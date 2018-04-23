@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="PerroneQuestion">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="PerroneQuestion.classpath">
+        <pathelement location="classes"/>
+    </path>
+    <target name="init">
+        <mkdir dir="classes"/>
+        <copy includeemptydirs="false" todir="classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="PerroneQuestion.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    
+              	
+  	<target name="run" depends="build">
+        <java classname="core.Start" failonerror="true" fork="yes">
+            <classpath refid="PerroneQuestion.classpath"/>
+        </java>
+    </target>
+  		
+	<target name="runWithArgs" depends="build">
+	    <java classname="core.Start" failonerror="true" fork="yes">
+	        <classpath refid="PerroneQuestion.classpath"/>
+			<!-- set arguments program -->
+			<arg value= "5"/> <!-- amount of threads in the pool -->
+			<arg value="1000"/> <!-- interval for queue -->
+			
+	    </java>
+    </target>
+</project>
